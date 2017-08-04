@@ -3,22 +3,18 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
-import { Players } from '../imports/api/players';
-import { TitleBar } from '../imports/components/TitleBar';
-import { AddPlayer } from '../imports/components/AddPlayer';
-import { PlayerList } from '../imports/components/PlayerList';
+import { Players } from '../imports/api/players.js';
+import { App } from '../imports/components/App';
 
 Meteor.startup(() => {
     Tracker.autorun(() => {
-        let players = Players.find().fetch()
-        let jsx = (
-            <div>
-                <TitleBar title="Score keeper" />
-                <PlayerList players={players} />
-                <AddPlayer />
-            </div>
-        );
-        ReactDOM.render(jsx, document.getElementById('container'));
+        let players = Players.find({}, {
+            sort: {
+                score: -1
+            }
+        }).fetch();
+
+        ReactDOM.render(<App title="Score Keeper" players={players} />, document.getElementById('container'));
     });
 });
 

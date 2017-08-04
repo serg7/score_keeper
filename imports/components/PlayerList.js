@@ -8,7 +8,11 @@ export class PlayerList extends React.Component
     {
         if (this.props.players.length === 0)
         {
-            return <p>Add new player</p>
+            return (
+                <div className="item">
+                    <p className="item__message item__message-empty">Add new player</p>
+                </div>
+            );
         }
         else
         {
