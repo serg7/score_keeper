@@ -7,6 +7,7 @@ export class AddPlayer extends React.Component
     {
         return (
             <div className="item">
+                {this.props.children}
                 <form className="form" onSubmit={this.handleSubmit}>
                     <input className="form__input" type="text" name="playerName" placeholder="Player name" />
                     <input className="form__input" type="number" name="playerScore" default="0" min="-100" max="100" />
