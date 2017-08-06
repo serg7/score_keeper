@@ -11,7 +11,6 @@ Meteor.startup(() => {
         let players = Players.find({}, {sort: {score: -1}}).fetch();
         let positionedPlayers = calculatePlayerPositions(players);
 
-
         ReactDOM.render(<App title="Score Keeper" players={positionedPlayers} />, document.getElementById('container'));
     });
 });
